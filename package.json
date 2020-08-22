@@ -1,0 +1,34 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Express server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "script": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poidogho/e-commerce-server.git"
+  },
+  "keywords": [
+    "server"
+  ],
+  "author": "Odafe Idogho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/poidogho/e-commerce-server/issues"
+  },
+  "homepage": "https://github.com/poidogho/e-commerce-server#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.9.13",
+    "morgan": "^1.10.0",
+    "stripe": "^8.79.0"
+  }
+}
