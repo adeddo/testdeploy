@@ -4,7 +4,9 @@
   "description": "Express server",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "run-test": "nyc mocha --exit test/**/**/*.test.js",
+    "test": "nyc --reporter=lcov npm run run-test",
+    "view-coverage": "cd coverage/lcov-report/ && lite-server && ../../",
     "script": "node server.js"
   },
   "repository": {
@@ -31,5 +33,15 @@
     "mongoose": "^5.9.13",
     "morgan": "^1.10.0",
     "stripe": "^8.79.0"
+  },
+  "devDependencies": {
+    "assert": "^1.5.0",
+    "mocha": "^5.2.0",
+    "nyc": "^15.1.0"
+  },
+  "nyc": {
+    "include": [
+      "**/server/**/*.js"
+    ]
   }
 }
