@@ -10,7 +10,6 @@ app.use(cors());
 app.use(morgan("dev"));
 //CONNECT TO MONGOdb
 connectDB();
-console.log("test");
 //define routes and API
 app.use(express.json({ extended: false }));
 app.use("/api/users", require("./routes/userApi"));
