@@ -1,6 +1,6 @@
 env: flex
 runtime: custom
-service: server
+service: default
 manual_scaling:
   instances: 1
 resources:
