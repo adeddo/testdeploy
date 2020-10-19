@@ -24,6 +24,9 @@ const ProductSchema = new Schema({
   brand: {
     type: String,
   },
+  thumbnail: {
+    type: String,
+  },
   quantity: {
     type: Number,
     required: true,
