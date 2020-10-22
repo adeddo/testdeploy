@@ -97,8 +97,7 @@ router.post(
   async (req, res) => {
     try {
       const { id } = req.user;
-      const { productId } = req.query;
-
+      const { productId, multiple } = req.query;
       if (!req.file) {
         res.status(400).send("No file uploaded.");
         return;
@@ -112,12 +111,23 @@ router.post(
       blobStream.on("finish", async () => {
         console.log(`sucessfully uploaded ${req.file.originalname}`);
         await blob.makePublic();
-        const response = await Product.findByIdAndUpdate(
-          { _id: productId },
-          { $set: { thumbnail: blob.metadata.mediaLink } },
-          { new: true }
-        );
-        res.status(200).send(response);
+        if (multiple) {
+          await Product.findOneAndUpdate(
+            { _id: productId },
+            { $push: { images: blob.metadata.mediaLink } },
+            { new: true, upsert: true }
+          );
+        } else {
+          await Product.findByIdAndUpdate(
+            { _id: productId },
+            { $set: { thumbnail: blob.metadata.mediaLink } },
+            { new: true }
+          );
+        }
+
+        res
+          .status(200)
+          .send({ msg: `sucessfully uploaded ${req.file.originalname}` });
       });
 
       blobStream.end(req.file.buffer);
